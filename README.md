@@ -20,6 +20,38 @@ dsh web
 
 ---
 
+## 自研插件管理规范
+
+自研（自己生成）的插件统一按以下流程与位置管理，避免目录散乱。
+
+### 两个规范位置
+
+| 位置 | 用途 |
+|---|---|
+| `~/.dsh/plugins/` | 开发 / 验证阶段；npm 上传失败或无法下载时的暂存区 |
+| `~/.dsh/profiles/web/node_modules/` | 安装后的最终位置（统一管理） |
+
+### 标准流程
+
+1. 在 `~/.dsh/plugins/<插件名>/` 下生成并开发插件；
+2. 本地验证通过；
+3. 上传到 npm；
+4. 安装：`dsh plugin --profile web add <npm包名>`；
+5. 最终由 `~/.dsh/profiles/web/node_modules/` 统一管理。
+
+### 异常情况
+
+- **验证阶段**：暂存于 `~/.dsh/plugins/`，不安装；
+- **npm 上传失败 / 无法下载**：继续留在 `~/.dsh/plugins/`，可临时用本地路径或 tarball 安装：
+  ```bash
+  dsh plugin --profile web add ~/.dsh/plugins/<插件名>
+  dsh plugin --profile web add ~/.dsh/plugins/<插件名>/<name>-<ver>.tgz
+  ```
+
+> 除上述两个位置外，不要在其它地方散落插件源码（例如之前的 `~/.dsh/plugin-market/` 已合并进 `~/.dsh/plugins/`）。
+
+---
+
 ## 插件清单
 
 ### UI Enhancements（界面增强）
@@ -59,19 +91,19 @@ dsh plugin --profile web add @anionex/dsh-vision-toolkit
 
 ---
 
-### 自有 / 本地插件（备注，非第三方）
+### 自研插件（自有）
 
-以下为本地自建、暂无公开 GitHub 仓库的插件，一并记录以备参考：
+以下为自研插件，按「自研插件管理规范」管理。
 
-#### dsh-plugin-market（本地 0.1.0）
+#### dsh-plugin-market（0.1.0）
 
 插件市场标签页（Settings → Plugins），从 npm registry 列出可安装的 dsh 插件，并把精选插件置顶。
 
-- 安装来源：本地 tarball（`file:~/.dsh/plugin-market/dsh-plugin-market-0.1.0.tgz`）
-- 备注：npm 上同名包 `dsh-plugin-market`（1.3.0）是另一个项目，请勿混淆
+- 安装来源：本地 tarball（`file:~/.dsh/plugins/dsh-plugin-market/dsh-plugin-market-0.1.0.tgz`）
+- 备注：npm 上同名包 `dsh-plugin-market`（1.3.0）是另一个项目，请勿混淆；如需发布需先改名
 
 ```bash
-dsh plugin --profile web add C:/Users/admin/.dsh/plugin-market
+dsh plugin --profile web add C:/Users/admin/.dsh/plugins/dsh-plugin-market
 ```
 
 #### dsh-about-settings-pinned（0.1.0）
@@ -85,6 +117,17 @@ dsh plugin --profile web add C:/Users/admin/.dsh/plugin-market
 
 ```bash
 dsh plugin --profile web add dsh-about-settings-pinned
+```
+
+#### dsh-third-party-plugins（0.1.0）
+
+第三方插件管理标签页（Settings → Plugins）：列出 profile 的 `node_modules` 下安装的插件，提供启/停用与删除。
+
+- 状态：已安装（本地 link `~/.dsh/plugins/dsh-third-party-plugins`），未发布到 npm（验证阶段）
+- 安装来源：本地路径
+
+```bash
+dsh plugin --profile web add C:/Users/admin/.dsh/plugins/dsh-third-party-plugins
 ```
 
 ---
