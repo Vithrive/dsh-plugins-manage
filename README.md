@@ -4,25 +4,9 @@
 
 本仓库记录我目前使用的**第三方插件**的 GitHub / npm 来源、简介与安装方式，分类方式参考 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)。
 
-## 通用安装方式
+## 我的Plugins管理规则
 
-所有插件均安装到 `web` profile（即 `dsh web` 所使用的 profile）：
-
-```bash
-# 安装插件到 web profile
-dsh plugin --profile web add <package>
-
-# 重启 dsh web 使插件生效
-dsh web
-```
-
-> 说明：`dsh plugin` 会把参数转发给 profile 目录（`~/.dsh/profiles/web`）下的 pnpm 完成安装；安装后需重启 `dsh web`，新的 client bundle 才会被加载。
-
----
-
-## 自研插件管理规范
-
-自研（自己生成）的插件统一按以下流程与位置管理，避免目录散乱。
+自研（自己生成）的插件统一按以下规范管理，避免目录散乱。
 
 ### 两个规范位置
 
@@ -50,50 +34,7 @@ dsh web
 
 > 除上述两个位置外，不要在其它地方散落插件源码（例如之前的 `~/.dsh/plugin-market/` 已合并进 `~/.dsh/plugins/`）。
 
----
-
-## 插件清单
-
-### UI Enhancements（界面增强）
-
-#### [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar)
-
-类 VS Code 的右侧边栏（资源管理器 / 编辑器 / 终端 / Git / 浏览器），按会话隔离；对外提供服务，供其他插件注册侧边栏标签页和文件查看器。
-
-| 项 | 值 |
-|---|---|
-| GitHub | https://github.com/omdsh-dev/DSH-better-sidebar |
-| npm | https://www.npmjs.com/package/dsh-better-sidebar |
-| 当前使用版本 | `0.12.2` |
-
-```bash
-dsh plugin --profile web add dsh-better-sidebar
-```
-
----
-
-### Tools & Capabilities（工具与能力）
-
-#### [@anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit)
-
-DeepSeek Harness 原生集成的视觉工具包（[agent-vision-toolkit](https://github.com/Anionex/agent-vision-toolkit) 的 DSH 版本）：图像问答、OCR、grounding、UI 还原、像素差异对比、Artifacts 与 Web UI，让纯文本模型也能处理视觉任务。
-
-| 项 | 值 |
-|---|---|
-| GitHub | https://github.com/Anionex/dsh-vision-toolkit |
-| npm | https://www.npmjs.com/package/@anionex/dsh-vision-toolkit |
-| 主页 | https://agent-vision.anionex.me |
-| 当前使用版本 | `0.1.7` |
-
-```bash
-dsh plugin --profile web add @anionex/dsh-vision-toolkit
-```
-
----
-
-### 自研插件（自有）
-
-以下为自研插件，按「自研插件管理规范」管理。
+### 自研插件清单
 
 #### dsh-plugin-market（0.1.0）
 
@@ -128,6 +69,59 @@ dsh plugin --profile web add dsh-about-settings-pinned
 
 ```bash
 dsh plugin --profile web add C:/Users/admin/.dsh/plugins/dsh-third-party-plugins
+```
+
+---
+
+## 通用安装方式
+
+所有插件均安装到 `web` profile（即 `dsh web` 所使用的 profile）：
+
+```bash
+# 安装插件到 web profile
+dsh plugin --profile web add <package>
+
+# 重启 dsh web 使插件生效
+dsh web
+```
+
+> 说明：`dsh plugin` 会把参数转发给 profile 目录（`~/.dsh/profiles/web`）下的 pnpm 完成安装；安装后需重启 `dsh web`，新的 client bundle 才会被加载。
+
+---
+
+## 插件清单（第三方插件）
+
+### UI Enhancements（界面增强）
+
+#### [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar)
+
+类 VS Code 的右侧边栏（资源管理器 / 编辑器 / 终端 / Git / 浏览器），按会话隔离；对外提供服务，供其他插件注册侧边栏标签页和文件查看器。
+
+| 项 | 值 |
+|---|---|
+| GitHub | https://github.com/omdsh-dev/DSH-better-sidebar |
+| npm | https://www.npmjs.com/package/dsh-better-sidebar |
+| 当前使用版本 | `0.12.2` |
+
+```bash
+dsh plugin --profile web add dsh-better-sidebar
+```
+
+### Tools & Capabilities（工具与能力）
+
+#### [@anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit)
+
+DeepSeek Harness 原生集成的视觉工具包（[agent-vision-toolkit](https://github.com/Anionex/agent-vision-toolkit) 的 DSH 版本）：图像问答、OCR、grounding、UI 还原、像素差异对比、Artifacts 与 Web UI，让纯文本模型也能处理视觉任务。
+
+| 项 | 值 |
+|---|---|
+| GitHub | https://github.com/Anionex/dsh-vision-toolkit |
+| npm | https://www.npmjs.com/package/@anionex/dsh-vision-toolkit |
+| 主页 | https://agent-vision.anionex.me |
+| 当前使用版本 | `0.1.7` |
+
+```bash
+dsh plugin --profile web add @anionex/dsh-vision-toolkit
 ```
 
 ---
