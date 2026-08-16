@@ -60,11 +60,11 @@ dsh plugin --profile web add C:/Users/admin/.dsh/plugins/dsh-plugin-market
 dsh plugin --profile web add dsh-about-settings-pinned
 ```
 
-#### dsh-third-party-plugins-manage（0.2.0）
+#### dsh-third-party-plugins-manage（0.2.1）
 
 第三方插件管理标签页（Settings → Plugins）：列出 profile 的 `node_modules` 下安装的插件，提供启/停用、更新检测与删除。
 
-- 状态：已发布 npm（0.2.0）
+- 状态：已发布 npm（0.2.1）
 - 安装来源：npm
 
 ```bash
