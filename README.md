@@ -60,15 +60,28 @@ dsh plugin --profile web add C:/Users/admin/.dsh/plugins/dsh-plugin-market
 dsh plugin --profile web add dsh-about-settings-pinned
 ```
 
-#### dsh-third-party-plugins-manage（0.1.0）
+#### dsh-third-party-plugins-manage（0.2.0）
 
-第三方插件管理标签页（Settings → Plugins）：列出 profile 的 `node_modules` 下安装的插件，提供启/停用与删除。
+第三方插件管理标签页（Settings → Plugins）：列出 profile 的 `node_modules` 下安装的插件，提供启/停用、更新检测与删除。
 
-- 状态：已安装（本地 link `~/.dsh/plugins/dsh-third-party-plugins-manage`），未发布到 npm（验证阶段）
-- 安装来源：本地路径
+- 状态：已发布 npm（0.2.0）
+- 安装来源：npm
 
 ```bash
-dsh plugin --profile web add C:/Users/admin/.dsh/plugins/dsh-third-party-plugins-manage
+dsh plugin --profile web add dsh-third-party-plugins-manage
+```
+
+#### dsh-drop-caret（0.1.0）
+
+把系统文件拖进对话输入框，在拖放点对应的精确光标位置插入文件引用（会话隔离存储，agent 可读）。
+
+| 项 | 值 |
+|---|---|
+| npm | https://www.npmjs.com/package/dsh-drop-caret |
+| 当前使用版本 | `0.1.0` |
+
+```bash
+dsh plugin --profile web add dsh-drop-caret
 ```
 
 ---
@@ -109,19 +122,18 @@ dsh plugin --profile web add dsh-better-sidebar
 
 ### Tools & Capabilities（工具与能力）
 
-#### [@anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit)
+#### [@liustack/modlens](https://github.com/liustack/modlens)
 
-DeepSeek Harness 原生集成的视觉工具包（[agent-vision-toolkit](https://github.com/Anionex/agent-vision-toolkit) 的 DSH 版本）：图像问答、OCR、grounding、UI 还原、像素差异对比、Artifacts 与 Web UI，让纯文本模型也能处理视觉任务。
+为纯文本 LLM 提供视觉能力的插件（Plug-in vision），基于免费的 Antigravity CLI。
 
 | 项 | 值 |
 |---|---|
-| GitHub | https://github.com/Anionex/dsh-vision-toolkit |
-| npm | https://www.npmjs.com/package/@anionex/dsh-vision-toolkit |
-| 主页 | https://agent-vision.anionex.me |
-| 当前使用版本 | `0.1.7` |
+| GitHub | https://github.com/liustack/modlens |
+| npm | https://www.npmjs.com/package/@liustack/modlens |
+| 当前使用版本 | `3.17.3` |
 
 ```bash
-dsh plugin --profile web add @anionex/dsh-vision-toolkit
+dsh plugin --profile web add @liustack/modlens
 ```
 
 ---
