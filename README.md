@@ -71,14 +71,14 @@ dsh plugin --profile web add dsh-about-settings-pinned
 dsh plugin --profile web add dsh-third-party-plugins-manage
 ```
 
-#### dsh-drop-caret（0.1.0）
+#### dsh-drop-caret（0.1.1）
 
 把系统文件拖进对话输入框，在拖放点对应的精确光标位置插入文件引用（会话隔离存储，agent 可读）。
 
 | 项 | 值 |
 |---|---|
 | npm | https://www.npmjs.com/package/dsh-drop-caret |
-| 当前使用版本 | `0.1.0` |
+| 当前使用版本 | `0.1.1` |
 
 ```bash
 dsh plugin --profile web add dsh-drop-caret
@@ -130,10 +130,56 @@ dsh plugin --profile web add dsh-better-sidebar
 |---|---|
 | GitHub | https://github.com/liustack/modlens |
 | npm | https://www.npmjs.com/package/@liustack/modlens |
-| 当前使用版本 | `3.17.3` |
+| 当前使用版本 | `3.18.0` |
 
 ```bash
 dsh plugin --profile web add @liustack/modlens
+```
+
+### Workflow & Automation（工作流与自动化）
+
+#### [dsh-anchored-standard](https://github.com/xiaobright/dsh-anchored-standard)
+
+两阶段 DeepSeek Harness 预设：先用 Minimal 对齐引导，再切换到完整的 Standard 工具集。
+
+| 项 | 值 |
+|---|---|
+| GitHub | https://github.com/xiaobright/dsh-anchored-standard |
+| 当前使用版本 | `0.1.0` |
+
+- 备注：agent preset（非 bundle，不声明 `dsh.bundle`），作为普通依赖安装
+
+```bash
+dsh plugin --profile web add github:xiaobright/dsh-anchored-standard
+```
+
+### Just for Fun（趣味）
+
+#### [dsh-answer-pet](https://github.com/Nanki-nn/dsh-answer-pet)
+
+可扩展的回答状态宠物框架：支持宠物主题、多会话进度、模型轨迹和工具调用。
+
+| 项 | 值 |
+|---|---|
+| GitHub | https://github.com/Nanki-nn/dsh-answer-pet |
+| 当前使用版本 | `0.6.0` |
+
+```bash
+dsh plugin --profile web add github:Nanki-nn/dsh-answer-pet
+```
+
+#### [whale-girl](https://github.com/vlln/whale-girl) — 🔴 已停用
+
+DSH Web GUI 内的桌面宠物（QQ 宠物形态）。
+
+| 项 | 值 |
+|---|---|
+| GitHub | https://github.com/vlln/whale-girl |
+| 当前使用版本 | `0.1.0` |
+| 状态 | 🔴 已停用（disabled） |
+
+```bash
+dsh plugin --profile web add github:vlln/whale-girl
 ```
 
 ---
