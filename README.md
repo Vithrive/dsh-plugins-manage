@@ -36,15 +36,15 @@
 
 ### 自研插件清单
 
-#### dsh-plugin-market（0.1.0）
+#### @vithrive/dsh-plugin-market（0.1.1）
 
-插件市场标签页（Settings → Plugins），从 npm registry 列出可安装的 dsh 插件，并把精选插件置顶。
+插件市场标签页（Settings → Plugins），从 deepseek-harness-plugin.com 目录列出可安装的 dsh 插件，一键安装。
 
-- 安装来源：本地 tarball（`file:~/.dsh/plugins/dsh-plugin-market/dsh-plugin-market-0.1.0.tgz`）
-- 备注：npm 上同名包 `dsh-plugin-market`（1.3.0）是另一个项目，请勿混淆；如需发布需先改名
+- 状态：已发布 npm（`@vithrive` scope）；原 `dsh-plugin-market` 名称被占用，故改名
+- 安装来源：本地 tarball（`file:~/.dsh/plugins/dsh-plugin-market/vithrive-dsh-plugin-market-0.1.1.tgz`）
 
 ```bash
-dsh plugin --profile web add C:/Users/admin/.dsh/plugins/dsh-plugin-market
+dsh plugin --profile web add @vithrive/dsh-plugin-market
 ```
 
 #### dsh-about-settings-pinned（0.1.0）
@@ -71,17 +71,43 @@ dsh plugin --profile web add dsh-about-settings-pinned
 dsh plugin --profile web add dsh-third-party-plugins-manage
 ```
 
-#### dsh-drop-caret（0.1.1）
+#### dsh-drop-caret（0.2.1）
 
-把系统文件拖进对话输入框，在拖放点对应的精确光标位置插入文件引用（会话隔离存储，agent 可读）。
+把文件/文件夹拖进对话输入框，在拖放点对应的精确光标位置插入文件引用（文件夹自动递归展开）。
 
 | 项 | 值 |
 |---|---|
 | npm | https://www.npmjs.com/package/dsh-drop-caret |
-| 当前使用版本 | `0.1.1` |
+| 当前使用版本 | `0.2.1` |
 
 ```bash
 dsh plugin --profile web add dsh-drop-caret
+```
+
+#### dsh-open-links（0.1.1）
+
+把对话中的外部 http/https 链接点击转发给外层宿主（如 VS Code Webview），由宿主在默认浏览器打开，避免 iframe 内部导航卡死。
+
+| 项 | 值 |
+|---|---|
+| npm | https://www.npmjs.com/package/dsh-open-links |
+| 当前使用版本 | `0.1.1` |
+
+```bash
+dsh plugin --profile web add dsh-open-links
+```
+
+#### dsh-vscode-selection（0.1.0）
+
+接收 VS Code 扩展发送的代码选中内容，并插入到对话输入框。
+
+| 项 | 值 |
+|---|---|
+| npm | https://www.npmjs.com/package/dsh-vscode-selection |
+| 当前使用版本 | `0.1.0` |
+
+```bash
+dsh plugin --profile web add dsh-vscode-selection
 ```
 
 ---
@@ -106,7 +132,21 @@ dsh web
 
 ### UI Enhancements（界面增强）
 
-#### [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar)
+#### [@linxin666/dsh-web-ui-all](https://github.com/zhu1090093659/dsh-web-ui)（0.2.4）
+
+DSH Web UI 全家桶聚合插件：一键安装 task-board / git-graph / pet / remote-web-ui / web-ui-settings / skin-center / community-plugins 等（含 dsh-better-sidebar）。内置子插件 `husky-dsh-pet` 已停用。
+
+| 项 | 值 |
+|---|---|
+| GitHub | https://github.com/zhu1090093659/dsh-web-ui |
+| npm | https://www.npmjs.com/package/@linxin666/dsh-web-ui-all |
+| 当前使用版本 | `0.2.4`（npm latest `0.2.5`） |
+
+```bash
+dsh plugin --profile web add @linxin666/dsh-web-ui-all
+```
+
+#### [dsh-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar)（0.14.0）
 
 类 VS Code 的右侧边栏（资源管理器 / 编辑器 / 终端 / Git / 浏览器），按会话隔离；对外提供服务，供其他插件注册侧边栏标签页和文件查看器。
 
@@ -114,48 +154,48 @@ dsh web
 |---|---|
 | GitHub | https://github.com/omdsh-dev/DSH-better-sidebar |
 | npm | https://www.npmjs.com/package/dsh-better-sidebar |
-| 当前使用版本 | `0.12.2` |
+| 当前使用版本 | `0.14.0` |
+
+- 备注：不再作为独立依赖，由 `@linxin666/dsh-web-ui-all` 聚合包内置
 
 ```bash
 dsh plugin --profile web add dsh-better-sidebar
 ```
 
-### Tools & Capabilities（工具与能力）
-
-#### [@liustack/modlens](https://github.com/liustack/modlens)
-
-为纯文本 LLM 提供视觉能力的插件（Plug-in vision），基于免费的 Antigravity CLI。
-
-| 项 | 值 |
-|---|---|
-| GitHub | https://github.com/liustack/modlens |
-| npm | https://www.npmjs.com/package/@liustack/modlens |
-| 当前使用版本 | `3.18.0` |
-
-```bash
-dsh plugin --profile web add @liustack/modlens
-```
-
 ### Workflow & Automation（工作流与自动化）
 
-#### [dsh-anchored-standard](https://github.com/xiaobright/dsh-anchored-standard)
+#### [@nanmicoder/dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams)（0.1.8）
 
-两阶段 DeepSeek Harness 预设：先用 Minimal 对齐引导，再切换到完整的 Standard 工具集。
+AgentTeams 多智能体团队协作：队长 / 成员 / 带依赖的任务 / 消息，Web GUI 树状监控。
 
 | 项 | 值 |
 |---|---|
-| GitHub | https://github.com/xiaobright/dsh-anchored-standard |
-| 当前使用版本 | `0.1.0` |
-
-- 备注：agent preset（非 bundle，不声明 `dsh.bundle`），作为普通依赖安装
+| GitHub | https://github.com/NanmiCoder/dsh-agent-teams |
+| npm | https://www.npmjs.com/package/@nanmicoder/dsh-agent-teams |
+| 当前使用版本 | `0.1.8` |
 
 ```bash
-dsh plugin --profile web add github:xiaobright/dsh-anchored-standard
+dsh plugin --profile web add @nanmicoder/dsh-agent-teams
+```
+
+### Memory（记忆）
+
+#### [dsh-memory-evolve](https://github.com/csyangwen/dsh-memory-evolve)（0.1.0）
+
+分层记忆（全局 / 用户 / 项目 / 分支 / 每日）+ 自我进化（经验沉淀 + 技能自动创建）+ 技能管理、待办管理、CLI 调度、临时便签，带 WebUI。
+
+| 项 | 值 |
+|---|---|
+| GitHub | https://github.com/csyangwen/dsh-memory-evolve |
+| 当前使用版本 | `0.1.0` |
+
+```bash
+dsh plugin --profile web add github:csyangwen/dsh-memory-evolve
 ```
 
 ### Just for Fun（趣味）
 
-#### [dsh-answer-pet](https://github.com/Nanki-nn/dsh-answer-pet)
+#### [dsh-answer-pet](https://github.com/Nanki-nn/dsh-answer-pet)（0.6.0）— 🔴 已停用
 
 可扩展的回答状态宠物框架：支持宠物主题、多会话进度、模型轨迹和工具调用。
 
@@ -163,23 +203,10 @@ dsh plugin --profile web add github:xiaobright/dsh-anchored-standard
 |---|---|
 | GitHub | https://github.com/Nanki-nn/dsh-answer-pet |
 | 当前使用版本 | `0.6.0` |
-
-```bash
-dsh plugin --profile web add github:Nanki-nn/dsh-answer-pet
-```
-
-#### [whale-girl](https://github.com/vlln/whale-girl) — 🔴 已停用
-
-DSH Web GUI 内的桌面宠物（QQ 宠物形态）。
-
-| 项 | 值 |
-|---|---|
-| GitHub | https://github.com/vlln/whale-girl |
-| 当前使用版本 | `0.1.0` |
 | 状态 | 🔴 已停用（disabled） |
 
 ```bash
-dsh plugin --profile web add github:vlln/whale-girl
+dsh plugin --profile web add dsh-answer-pet
 ```
 
 ---
